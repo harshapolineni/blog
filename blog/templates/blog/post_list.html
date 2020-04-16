@@ -1,0 +1,17 @@
+{%extends 'base.html' %}
+{% block content %}
+
+<div class="row">
+{% for i in object_list %}
+<div class="col-6">
+<a id="h3id" href="{% url 'blog:post-detail' i.id %}">{{i.title}}</a><br>
+{% if i.img %}
+<img src="{{i.img.url}}" height="300" width="500">
+{% endif %}
+<br><br>
+Comments: {{ i.comments.count }}
+</div>
+{% endfor %}
+
+</div>
+{% endblock %}

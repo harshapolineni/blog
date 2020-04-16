@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% block content %}
+<h3 id=h3id>{{object.title}}</h3><br>
+<p id="btext">{{object.body}}</p><br><br>
+<button type="button" class="btn btn-success btn-sm" onclick="onClick()">Like</button>
+<br>
+published by <p class="aclass">{{object.author}}</p> on {{object.created_date}}<br>
+<p id="like">{{object.likes}}</p>
+
+<input id="likes_id" type="hidden" name="name" value="{{object.id}}">
+
+
+<a type="button" class="btn btn-outline-warning" href="{% url 'blog:post-update' object.id %}">Update</a>
+<a type="button" class="btn btn-outline-danger" href="{% url 'blog:post-delete' object.id %}">Delete</a>
+<br><br>
+
+<a type="button" class="btn btn-primary btn-sm" href="{% url 'blog:post-comment' object.id %}" >Comment</a>
+
+<hr>
+
+{% for i in post.comments.all %}
+<b>{{i.text}}</b><br>
+{{i.timestamp}}<br>
+<hr>
+{% empty %}
+No comments
+{% endfor %}
+{% endblock %}
+
+
